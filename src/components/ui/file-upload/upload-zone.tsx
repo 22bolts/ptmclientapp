@@ -5,11 +5,11 @@ import toast from 'react-hot-toast';
 import isEmpty from 'lodash/isEmpty';
 import prettyBytes from 'pretty-bytes';
 import { useCallback, useState } from 'react';
-import type { FileWithPath } from '@uploadthing/react';
+// import type { FileWithPath } from '@uploadthing/react';
 import { useDropzone } from '@uploadthing/react/hooks';
 import { PiCheckBold, PiTrashBold, PiUploadSimpleBold } from 'react-icons/pi';
 import {
-  UploadFileResponse,
+  // UploadFileResponse,
   generateClientDropzoneAccept,
 } from 'uploadthing/client';
 import { useUploadThing } from '@/utils/uploadthing';
@@ -45,20 +45,20 @@ export default function UploadZone({
 }: UploadZoneProps) {
   const [files, setFiles] = useState<File[]>([]);
 
-  const onDrop = useCallback(
-    (acceptedFiles: FileWithPath[]) => {
-      console.log('acceptedFiles', acceptedFiles);
-      setFiles([
-        ...acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        ),
-      ]);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [files]
-  );
+  // const onDrop = useCallback(
+  //   (acceptedFiles: FileWithPath[]) => {
+  //     console.log('acceptedFiles', acceptedFiles);
+  //     setFiles([
+  //       ...acceptedFiles.map((file) =>
+  //         Object.assign(file, {
+  //           preview: URL.createObjectURL(file),
+  //         })
+  //       ),
+  //     ]);
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [files]
+  // );
 
   function handleRemoveFile(index: number) {
     // Make a copy of the files array
@@ -83,24 +83,24 @@ export default function UploadZone({
   const { startUpload, permittedFileInfo, isUploading } = useUploadThing(
     'generalMedia',
     {
-      onClientUploadComplete: (res: UploadFileResponse<any>[] | undefined) => {
-        console.log('res', res);
-        if (setValue) {
-          // const respondedUrls = res?.map((r) => r.url);
-          setFiles([]);
-          const respondedUrls = res?.map((r) => ({
-            name: r.name,
-            size: r.size,
-            url: r.url,
-          }));
-          setValue(name, respondedUrls);
-        }
-        toast.success(
-          <Text as="b" className="font-semibold">
-            portfolio Images updated
-          </Text>
-        );
-      },
+      // onClientUploadComplete: (res: UploadFileResponse<any>[] | undefined) => {
+      //   console.log('res', res);
+      //   if (setValue) {
+      //     // const respondedUrls = res?.map((r) => r.url);
+      //     setFiles([]);
+      //     const respondedUrls = res?.map((r) => ({
+      //       name: r.name,
+      //       size: r.size,
+      //       url: r.url,
+      //     }));
+      //     setValue(name, respondedUrls);
+      //   }
+      //   toast.success(
+      //     <Text as="b" className="font-semibold">
+      //       portfolio Images updated
+      //     </Text>
+      //   );
+      // },
       onUploadError: (error: Error) => {
         console.error(error);
         toast.error(error.message);
@@ -112,10 +112,10 @@ export default function UploadZone({
     ? Object.keys(permittedFileInfo?.config)
     : [];
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: fileTypes ? generateClientDropzoneAccept(fileTypes) : undefined,
-  });
+  // const { getRootProps, getInputProps } = useDropzone({
+  //   onDrop,
+  //   accept: fileTypes ? generateClientDropzoneAccept(fileTypes) : undefined,
+  // });
 
   return (
     <div className={cn('grid @container', className)}>
@@ -131,7 +131,7 @@ export default function UploadZone({
             'flex flex-wrap items-center justify-between @xl:flex-nowrap @xl:pr-6'
         )}
       >
-        <div
+        {/* <div
           {...getRootProps()}
           className={cn(
             'flex cursor-pointer items-center gap-4 px-6 py-5 transition-all duration-300',
@@ -143,7 +143,7 @@ export default function UploadZone({
           <input {...getInputProps()} />
           <UploadIcon className="h-12 w-12" />
           <Text className="text-base font-medium">Drop or select file</Text>
-        </div>
+        </div> */}
 
         {!isEmpty(files) && !isEmpty(notUploadedItems) && (
           <UploadButtons

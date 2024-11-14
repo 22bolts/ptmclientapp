@@ -3,10 +3,10 @@
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { useCallback, useState } from 'react';
-import type { FileWithPath } from '@uploadthing/react';
+// import type { FileWithPath } from '@uploadthing/react';
 import { useDropzone } from '@uploadthing/react/hooks';
 import {
-  UploadFileResponse,
+  // UploadFileResponse,
   generateClientDropzoneAccept,
 } from 'uploadthing/client';
 import { useUploadThing } from '@/utils/uploadthing';
@@ -40,25 +40,25 @@ export default function AvatarUpload({
   const { startUpload, permittedFileInfo, isUploading } = useUploadThing(
     'avatar',
     {
-      onClientUploadComplete: (res: UploadFileResponse<any>[] | undefined) => {
-        if (setValue) {
-          const respondedUrls = res?.map((r) => ({
-            name: r.name,
-            size: r.size,
-            url: r.url,
-          }));
-          setValue(name, respondedUrls?.[0]);
-        }
-        toast.success(
-          <Text as="b" className="font-semibold">
-            Avatar updated
-          </Text>
-        );
-      },
-      onUploadError: (error: Error) => {
-        console.error(error);
-        toast.error(error.message);
-      },
+      // onClientUploadComplete: (res: UploadFileResponse<any>[] | undefined) => {
+      //   if (setValue) {
+      //     const respondedUrls = res?.map((r) => ({
+      //       name: r.name,
+      //       size: r.size,
+      //       url: r.url,
+      //     }));
+      //     setValue(name, respondedUrls?.[0]);
+      //   }
+      //   toast.success(
+      //     <Text as="b" className="font-semibold">
+      //       Avatar updated
+      //     </Text>
+      //   );
+      // },
+      // onUploadError: (error: Error) => {
+      //   console.error(error);
+      //   toast.error(error.message);
+      // },
     }
   );
 
@@ -66,25 +66,25 @@ export default function AvatarUpload({
     ? Object.keys(permittedFileInfo?.config)
     : [];
 
-  const onDrop = useCallback(
-    (acceptedFiles: FileWithPath[]) => {
-      setFiles([
-        ...acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        ),
-      ]);
-      startUpload(files);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [files]
-  );
+  // const onDrop = useCallback(
+  //   (acceptedFiles: FileWithPath[]) => {
+  //     setFiles([
+  //       ...acceptedFiles.map((file) =>
+  //         Object.assign(file, {
+  //           preview: URL.createObjectURL(file),
+  //         })
+  //       ),
+  //     ]);
+  //     startUpload(files);
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [files]
+  // );
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: fileTypes ? generateClientDropzoneAccept(fileTypes) : undefined,
-  });
+  // const { getRootProps, getInputProps } = useDropzone({
+  //   onDrop,
+  //   accept: fileTypes ? generateClientDropzoneAccept(fileTypes) : undefined,
+  // });
 
   return (
     <div className={cn('grid gap-5', className)}>
@@ -93,7 +93,7 @@ export default function AvatarUpload({
           'relative grid h-40 w-40 place-content-center rounded-full border-[1.8px]'
         )}
       >
-        {formValue ? (
+        {/* {formValue ? (
           <>
             <figure className="absolute inset-0 rounded-full">
               <Image
@@ -134,7 +134,7 @@ export default function AvatarUpload({
               <Text className="font-medium">Drop or select file</Text>
             )}
           </div>
-        )}
+        )} */}
       </div>
       {error && <FieldError error={error} />}
     </div>

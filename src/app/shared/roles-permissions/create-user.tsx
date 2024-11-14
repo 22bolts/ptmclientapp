@@ -63,13 +63,13 @@ export default function CreateUser() {
                 <PiXBold className="h-auto w-5" />
               </ActionIcon>
             </div>
-            <Input
+            {/* <Input
               label="Full Name"
               placeholder="Enter user's full name"
               {...register('fullName')}
               className="col-span-full"
               error={errors.fullName?.message}
-            />
+            /> */}
 
             <Input
               label="Email"
@@ -122,7 +122,7 @@ export default function CreateUser() {
               )}
             />
 
-            <Controller
+            {/* <Controller
               name="permissions"
               control={control}
               render={({ field: { name, onChange, value } }) => (
@@ -141,7 +141,7 @@ export default function CreateUser() {
                   dropdownClassName={'z-[9999]'}
                 />
               )}
-            />
+            /> */}
 
             <div className="col-span-full flex items-center justify-end gap-4">
               <Button

@@ -111,9 +111,9 @@ export default function Sidebar({ className }: { className?: string }) {
                                   {dropdownItem?.name}
                                 </span>
                               </div>
-                              {dropdownItem?.badge?.length ? (
+                              {/* {dropdownItem?.badge?.length ? (
                                 <StatusBadge status={dropdownItem?.badge} />
-                              ) : null}
+                              ) : null} */}
                             </Link>
                           );
                         })}
@@ -143,9 +143,9 @@ export default function Sidebar({ className }: { className?: string }) {
                           )}
                           <span className="truncate">{item.name}</span>
                         </div>
-                        {item?.badge?.length ? (
+                        {/* {item?.badge?.length ? (
                           <StatusBadge status={item?.badge} />
-                        ) : null}
+                        ) : null} */}
                       </Link>
                     )}
                   </>
