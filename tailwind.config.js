@@ -1,10 +1,9 @@
-import type { Config } from 'tailwindcss';
-import plugin from 'tailwindcss/plugin';
+const plugin = require('tailwindcss/plugin');
 
-export default {
+module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/rizzui/dist/*.{js,ts,jsx,tsx}', // must use this line to compile and generate our RizzUI components style
+    './node_modules/rizzui/dist/*.{js,ts,jsx,tsx}', // Must use this line to compile and generate our RizzUI components style
   ],
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
@@ -16,7 +15,7 @@ export default {
       xl: '1280px',
       '2xl': '1536px',
       '3xl': '1920px',
-      '4xl': '2560px', // only need to control product grid mode in ultra 4k device
+      '4xl': '2560px', // Only need to control product grid mode in ultra 4k device
     },
     extend: {
       colors: {
@@ -75,7 +74,6 @@ export default {
         inter: ['var(--font-inter)'],
         lexend: ['var(--font-lexend)'],
       },
-      // required these animations for the Loader component
       animation: {
         blink: 'blink 1.4s infinite both;',
         'scale-up': 'scaleUp 500ms infinite alternate',
@@ -109,7 +107,6 @@ export default {
             transform: 'translateX(-100%)',
           },
           '50%': {
-            /* +0.5s of delay between each loop */
             transform: 'translateX(100%)',
           },
           '100%': {
@@ -138,8 +135,8 @@ export default {
     require('@tailwindcss/forms'),
     require('@tailwindcss/container-queries'),
     plugin(function ({ addVariant }) {
-      // required this to prevent any style on readOnly input elements
+      // Required this to prevent any style on readOnly input elements
       addVariant('not-read-only', '&:not(:read-only)');
     }),
   ],
-} satisfies Config;
+};

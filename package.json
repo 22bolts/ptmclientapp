@@ -61,6 +61,7 @@
     "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "nextjs-toploader": "^1.6.4",
+    "node-addon-api": "^8.2.2",
     "nodemailer": "^6.9.7",
     "pretty-bytes": "^6.1.1",
     "prop-types": "^15.8.1",
